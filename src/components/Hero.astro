@@ -1,0 +1,45 @@
+---
+// src/components/Hero.astro
+---
+
+<section 
+  class="relative w-full min-h-[70vh] flex flex-col justify-center items-center"
+  style="background-image: url('/fondo-papel.png'); background-size: cover; background-position: bottom;"
+>
+  <!-- Contenedor principal alineado correctamente (mx-auto para centrar la caja, no el texto) -->
+  <div class="relative z-10 w-full max-w-5xl mx-auto px-6 py-16 flex flex-col">
+    
+    <!-- Bloque de textos alineado estrictamente a la izquierda -->
+    <div class="flex flex-col items-start w-full">
+      
+      <!-- Primera línea -->
+      <h1 class="text-7xl md:text-[110px] font-titulo font-black uppercase leading-none text-white tracking-[0.05em]">
+        Bienvenido/a
+      </h1>
+      
+      <!-- Segunda línea: "A MI" y "PORTFOLIO" -->
+      <!-- gap-3 y gap-5 manejan la separación entre ambas palabras -->
+      <div class="flex items-start gap-3 md:gap-5 mt-2 md:mt-0">
+        
+        <!-- Le damos un margen superior (mt) a "A mi" para empujarlo y que su techo coincida con Portfolio -->
+        <span class="text-7xl md:text-[110px] font-titulo font-black uppercase leading-none text-white tracking-[0.05em] mt-0 md:mt-0">
+          A mi
+        </span>
+        
+        <!-- Portfolio con su tipografía 2, más grande y con tracking para separar sus letras -->
+        <span class="text-[#4a154b] text-[90px] md:text-[190px] font-titulo2 font-black uppercase leading-[0.75] tracking-widest">
+          Portfolio
+        </span>
+      </div>
+
+    </div>
+
+    <!-- Píldora con tu nombre (alineada a la derecha del contenedor) -->
+    <div class="w-full flex justify-end mt-8 md:mt-2 pr-4 md:pr-12">
+      <span class="bg-[#8b5cf6] text-white font-extrabold text-xl md:text-3xl px-8 py-2 rounded-full uppercase tracking-wider border-2 border-transparent">
+        Oriana Cappelli
+      </span>
+    </div>
+    
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sobre Mí - Oriana Cappelli</title>
+  </head>
+  <body class="bg-[#f4ebf2] font-sans flex flex-col min-h-screen">
+    <Navbar />
+    
+    <!-- Contenido principal que empuja el footer hacia abajo -->
+    <main class="flex-grow w-full max-w-5xl mx-auto px-6 py-24">
+      <h1 class="text-6xl font-black uppercase tracking-tight text-black mb-8">Sobre Mí</h1>
+      <p class="text-xl text-gray-800 leading-relaxed">
+        Acá vas a poder escribir todo tu perfil, contar sobre tu experiencia y tu enfoque como diseñadora gráfica...
+      </p>
+    </main>
+
+    <Footer />
+  </body>
+</html>

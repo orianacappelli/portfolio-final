@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+
+
+@font-face {
+  font-family: 'TituloPortfolio';
+  src: url('/fonts/adiNeue Pro TT Black.ttf') format('truetype'); /* Poné el nombre exacto de tu archivo */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-titulo: "TituloPortfolio", sans-serif;
+}
+
+@font-face {
+  font-family: 'TituloPortfolio2';
+  src: url('/fonts/Bahiana-Regular.ttf') format('truetype'); /* Poné el nombre exacto de tu archivo */
+  font-weight: normal;
+  font-style: normal;
+}
+@theme {
+  --font-titulo2: "TituloPortfolio2", sans-serif;
+}
