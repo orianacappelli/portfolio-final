@@ -1,0 +1,162 @@
+---
+// src/pages/proyectos/[id].astro
+import '../../styles/global.css';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+export function getStaticPaths() {
+  const misProyectos = [
+    {
+      id: '7up',
+      titulo: 'Animación 7up',
+      categoria: 'Motion Graphics / After Effects',
+      tipo: 'video', 
+      archivo: '/final-cappelli.mp4',
+      descripcion: `
+        <p class="mb-6">
+          <strong class="text-black block text-xl mb-1 uppercase">El Desafío</strong>
+          Crear un spot publicitario animado para redes sociales desde cero, cumpliendo con restricciones técnicas estrictas: <span class="bg-[#e9d5e5] px-1 border border-black">100% diseño vectorial nativo</span> en After Effects (sin importar capas de Illustrator) e integración de un personaje animado.
+        </p>
+        <p>
+          <strong class="text-black block text-xl mb-1 uppercase">La Ejecución</strong>
+          Elegí trabajar con 7up para revivir a Fido Dido en un contexto moderno. El proyecto implicó la creación de escenarios dinámicos, <em>rigging</em> y animación del personaje mediante shapes/curvas, tipografía cinética utilizando Animation Composer, y un diseño de sonido envolvente para potenciar el concepto refrescante de la marca.
+        </p>
+      `
+    },
+    {
+      id: 'diseno-beatrix',
+      titulo: 'Concept Art: Beatrix',
+      categoria: 'Ilustración / Diseño de Personajes',
+      tipo: 'pdf', // Le decimos que ahora esto es un PDF
+      archivo: '/public/Cappelli_Oriana_Practica2.pdf', // El nombre exacto de tu archivo en la carpeta public
+      descripcion: `
+        <p class="mb-6">
+          <strong class="text-black block text-xl mb-1 uppercase">El Desafío</strong>
+          Desarrollar un personaje original teniendo en cuenta todas las etapas esenciales del diseño, desde el concept inicial hasta la presentación del diseño final. El objetivo técnico central fue demostrar una sólida comprensión de fundamentos visuales como la silueta, combinación de color, balance y vestimenta.
+        </p>
+        <p>
+          <strong class="text-black block text-xl mb-1 uppercase">La Ejecución</strong>
+          Desarrollé la biblia de producción de "Beatrix", una joven científica brillante que se fusiona accidentalmente con una máquina del tiempo. El proyecto se materializó bajo un estilo <em>Cartoon</em> dirigido a adolescentes. El caso de estudio incluye la creación del <em>storyline</em>, exploración de paletas cromáticas, color script, estudio milimétrico de proporciones, hoja de expresiones, diseño de props (vehículos temporales) y la renderización de fondos como su laboratorio y ciudad.
+        </p>
+      `
+    },
+    {
+      id: 'logo-animado',
+      titulo: 'Logo Animado: Disney Channel',
+      categoria: 'Motion Graphics / After Effects',
+      tipo: 'video', 
+      archivo: '/logo-disney.mp4', // Asegurate de poner el nombre exacto de tu archivo en la carpeta public
+      descripcion: `
+        <p class="mb-6">
+          <strong class="text-black block text-xl mb-1 uppercase">El Desafío</strong>
+          Crear una introducción institucional en formato de video para una marca, logrando transmitir su identidad inconfundible en menos de 4 segundos. El requisito técnico principal consistió en partir de un archivo vectorial y aplicar animación de trazados (<em>shapes</em>) y máscaras en After Effects.
+        </p>
+        <p>
+          <strong class="text-black block text-xl mb-1 uppercase">La Ejecución</strong>
+          Me inspiré en la icónica y nostálgica cortina de Disney Channel. El proceso técnico implicó la vectorización y preparación del logotipo, el uso de capas de formas con animación de trazos para simular el dibujo de la varita mágica, y la integración de efectos de iluminación y resplandor (<em>glow</em>) para materializar el clásico trazo brillante que corona el emblema.
+        </p>
+      `
+    }
+  ];
+
+  return misProyectos.map((proyecto) => {
+    return {
+      params: { id: proyecto.id },
+      props: { proyecto }
+    };
+  });
+}
+
+const { proyecto } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{proyecto.titulo} - Oriana Cappelli</title>
+  </head>
+  <body class="bg-[#f4ebf2] font-sans flex flex-col min-h-screen">
+    <Navbar />
+    
+    <main class="flex-grow w-full max-w-6xl mx-auto px-6 py-16 md:py-24">
+      
+      <!-- Botón para volver -->
+      <a href="/proyectos" class="inline-flex items-center gap-2 text-black font-black uppercase tracking-wider mb-8 hover:opacity-70 transition-opacity">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-[3px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Volver a Proyectos
+      </a>
+
+      <!-- Layout en 2 columnas para pantallas grandes -->
+      <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+        
+        <!-- COLUMNA IZQUIERDA: Media (Video, Imagen o PDF) -->
+        <div class="w-full lg:w-3/5 flex flex-col gap-4">
+          <div class="bg-white border-[3px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-2">
+            
+            {proyecto.tipo === 'video' ? (
+              <video 
+                src={proyecto.archivo} 
+                class="w-full h-auto border-[3px] border-black"
+                controls autoplay loop muted playsinline
+              >
+                Tu navegador no soporta el formato de video.
+              </video>
+            ) : proyecto.tipo === 'pdf' ? (
+              <iframe 
+                src={proyecto.archivo} 
+                class="w-full h-[500px] md:h-[700px] border-[3px] border-black"
+                title={proyecto.titulo}
+              ></iframe>
+            ) : (
+              <img 
+                src={proyecto.archivo} 
+                alt={proyecto.titulo} 
+                class="w-full h-auto border-[3px] border-black object-cover" 
+              />
+            )}
+            
+          </div>
+
+          <!-- Botón extra por si el navegador bloquea el visor de PDF -->
+          {proyecto.tipo === 'pdf' && (
+            <a 
+              href={proyecto.archivo} 
+              target="_blank" 
+              class="block w-full bg-white text-black text-center font-black uppercase py-4 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#e9d5e5] transition-colors"
+            >
+              📥 Abrir o Descargar PDF completo
+            </a>
+          )}
+        </div>
+
+        <!-- COLUMNA DERECHA: Textos y Descripción -->
+        <div class="w-full lg:w-2/5 flex flex-col">
+          
+          <!-- Tag de categoría Brutalista -->
+          <div class="mb-4">
+            <span class="bg-[#2c2c2c] text-white text-xs md:text-sm font-bold uppercase px-3 py-1 border-[2px] border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              {proyecto.categoria}
+            </span>
+          </div>
+          
+          <!-- Título -->
+          <h1 class="text-5xl md:text-6xl font-black uppercase tracking-tight text-black leading-none mb-8">
+            {proyecto.titulo}
+          </h1>
+          
+          <!-- Descripción (Renderizada como HTML para tomar las negritas) -->
+          <div class="flex flex-col gap-4 text-lg font-medium text-gray-800 leading-snug">
+            <Fragment set:html={proyecto.descripcion} />
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <Footer />
+  </body>
+</html>

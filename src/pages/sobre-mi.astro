@@ -13,12 +13,82 @@ import Footer from '../components/Footer.astro';
   <body class="bg-[#f4ebf2] font-sans flex flex-col min-h-screen">
     <Navbar />
     
-    <!-- Contenido principal que empuja el footer hacia abajo -->
-    <main class="flex-grow w-full max-w-5xl mx-auto px-6 py-24">
-      <h1 class="text-6xl font-black uppercase tracking-tight text-black mb-8">Sobre Mí</h1>
-      <p class="text-xl text-gray-800 leading-relaxed">
-        Acá vas a poder escribir todo tu perfil, contar sobre tu experiencia y tu enfoque como diseñadora gráfica...
-      </p>
+    <main class="flex-grow w-full max-w-6xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row gap-16 md:gap-24 items-center md:items-start">
+      
+      <!-- COLUMNA IZQUIERDA: Foto y Botón Brutalista -->
+      <div class="w-full md:w-[380px] shrink-0 flex flex-col items-center">
+        
+        <!-- Contenedor de la Foto (Estilo cuadro brutalista con sombra dura) -->
+        <div class="w-full bg-white border-[3px] border-black p-3 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <div class="w-full aspect-[4/5] bg-zinc-200 border-[3px] border-black overflow-hidden">
+            <img src="/foto-perfil.jpg" alt="Oriana Cappelli" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4 text-center bg-white">
+            <p class="text-3xl font-black text-black uppercase tracking-tight">
+              Hola! Soy Ori
+            </p>
+          </div>
+        </div>
+
+        <!-- Botón Contáctame Brutalista -->
+        <a href="/contacto" class="group block w-full bg-[#8b5cf6] border-[3px] border-black p-5 mt-8 text-center hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 cursor-pointer">
+          <span class="text-2xl font-black text-white uppercase tracking-tight">Contáctame</span>
+        </a>
+
+      </div>
+
+      <!-- COLUMNA DERECHA: Bio, Skills y Educación -->
+      <div class="w-full flex flex-col text-black pt-4">
+        
+        <!-- Título principal de la sección -->
+        <h1 class="text-5xl md:text-6xl font-black uppercase tracking-tight text-black leading-none mb-8">
+          Sobre Mí
+        </h1>
+
+        <!-- Párrafo principal -->
+        <p class="text-xl md:text-[22px] leading-relaxed font-medium text-gray-900 mb-10">
+          Hola, soy Oriana Cappelli, tengo 23 años y soy de Argentina.<br/>
+          Me gusta pensar y estructurar visualmente experiencias digitales, enfocándome en crear interfaces estéticas, intuitivas y centradas en el usuario.<br/>
+          Mi objetivo es traducir ideas y conceptos en diseños limpios y atractivos que realmente conecten con las personas.
+        </p>
+
+        <!-- Divisor -->
+        <hr class="border-t-[3px] border-black mb-10" />
+
+        <!-- Sección Skills -->
+        <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-6">Skills</h2>
+        
+        <div class="flex flex-wrap gap-4 mb-10">
+          <div class="bg-white border-[3px] border-black p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <img src="/logo-figma.png" alt="Figma" class="w-16 h-16 object-cover" />
+          </div>
+          <div class="bg-white border-[3px] border-black p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <img src="/logo-ai.png" alt="Illustrator" class="w-16 h-16 object-cover" />
+          </div>
+          <div class="bg-white border-[3px] border-black p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <img src="/logo-ps.png" alt="Photoshop" class="w-16 h-16 object-cover" />
+          </div>
+          <div class="bg-white border-[3px] border-black p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <img src="/logo-ae.png" alt="After Effects" class="w-16 h-16 object-cover" />
+          </div>
+        </div>
+
+        <!-- Divisor -->
+        <hr class="border-t-[3px] border-black mb-10" />
+
+        <!-- Sección Educación -->
+        <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-4">Educación</h2>
+        <div class="bg-white border-[3px] border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <p class="text-xl md:text-2xl font-black text-black uppercase tracking-tight mb-1">
+            Tecnología Multimedial
+          </p>
+          <p class="text-lg font-medium text-gray-800">
+            Universidad Maimónides
+          </p>
+        </div>
+
+      </div>
+
     </main>
 
     <Footer />

@@ -1,44 +1,67 @@
 ---
 // src/components/Hero.astro
+
+// Tu link limpio y directo
+const urlAPI = 'https://gist.githubusercontent.com/orianacappelli/5769ca586f73661b780daaef14a3574e/raw/gistfile1.txt';
+
+// Estado por defecto (por si se corta tu internet)
+let estado = { disponible: true, mensaje: "Disponible para proyectos" }; 
+
+try {
+  const respuesta = await fetch(urlAPI);
+  if (respuesta.ok) {
+    estado = await respuesta.json();
+  }
+} catch (error) {
+  console.log("Error de conexión, usando el estado por defecto.");
+}
 ---
 
-<section 
-  class="relative w-full min-h-[70vh] flex flex-col justify-center items-center"
-  style="background-image: url('/fondo-papel.png'); background-size: cover; background-position: bottom;"
->
-  <!-- Contenedor principal alineado correctamente (mx-auto para centrar la caja, no el texto) -->
+<section class="relative w-full min-h-[70vh] flex flex-col justify-center items-center bg-[#9580e5] border-b-[3px] border-black">
   <div class="relative z-10 w-full max-w-5xl mx-auto px-6 py-16 flex flex-col">
     
-    <!-- Bloque de textos alineado estrictamente a la izquierda -->
     <div class="flex flex-col items-start w-full">
       
       <!-- Primera línea -->
-      <h1 class="text-7xl md:text-[110px] font-titulo font-black uppercase leading-none text-white tracking-[0.05em]">
+      <h1 class="text-7xl md:text-[120px] font-titulo font-black uppercase leading-none text-white tracking-[0.05em]">
         Bienvenido/a
       </h1>
       
-      <!-- Segunda línea: "A MI" y "PORTFOLIO" -->
-      <!-- gap-3 y gap-5 manejan la separación entre ambas palabras -->
-      <div class="flex items-start gap-3 md:gap-5 mt-2 md:mt-0">
-        
-        <!-- Le damos un margen superior (mt) a "A mi" para empujarlo y que su techo coincida con Portfolio -->
-        <span class="text-7xl md:text-[110px] font-titulo font-black uppercase leading-none text-white tracking-[0.05em] mt-0 md:mt-0">
+      <!-- Segunda línea: "A MI" y "PORTFOLIO" alineados perfectamente arriba -->
+      <div class="flex flex-row items-start gap-4 md:gap-6 mt-2 md:mt-4 w-full">
+        <span class="text-7xl md:text-[120px] font-titulo font-black uppercase leading-none text-white tracking-[0.05em]">
           A mi
         </span>
-        
-        <!-- Portfolio con su tipografía 2, más grande y con tracking para separar sus letras -->
-        <span class="text-[#4a154b] text-[90px] md:text-[190px] font-titulo2 font-black uppercase leading-[0.75] tracking-widest">
+        <span class="text-[#4a154b] text-[90px] md:text-[170px] font-titulo2 font-black uppercase leading-[0.8] tracking-widest">
           Portfolio
         </span>
       </div>
 
     </div>
 
-    <!-- Píldora con tu nombre (alineada a la derecha del contenedor) -->
-    <div class="w-full flex justify-end mt-8 md:mt-2 pr-4 md:pr-12">
-      <span class="bg-[#8b5cf6] text-white font-extrabold text-xl md:text-3xl px-8 py-2 rounded-full uppercase tracking-wider border-2 border-transparent">
+    <!-- Píldoras (alineadas a la derecha) -->
+    <div class="w-full flex justify-end items-center gap-4 mt-12 md:mt-6 pr-4 md:pr-12 flex-wrap">
+      
+      <!-- SEMÁFORO DE STATUS (Consumiendo la API) -->
+      <div class="bg-white text-black font-extrabold text-sm md:text-base px-6 py-3 border-[3px] border-black uppercase tracking-wider flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <span class="relative flex h-3 w-3">
+          {estado.disponible ? (
+            <>
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1ea04c] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-[#1ea04c]"></span>
+            </>
+          ) : (
+             <span class="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+          )}
+        </span>
+        {estado.mensaje}
+      </div>
+
+      <!-- Píldora de tu nombre con el color oscuro de la imagen -->
+      <span class="bg-[#4a154b] text-white font-extrabold text-xl md:text-3xl px-8 py-2 border-[3px] border-black uppercase tracking-wider shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
         Oriana Cappelli
       </span>
+      
     </div>
     
   </div>
