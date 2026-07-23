@@ -17,34 +17,34 @@ try {
 }
 ---
 
-<section class="relative w-full min-h-[70vh] flex flex-col justify-center items-center bg-[#9580e5] border-b-[3px] border-black">
-  <div class="relative z-10 w-full max-w-5xl mx-auto px-6 py-16 flex flex-col">
+<section class="relative w-full min-h-[70vh] flex flex-col justify-center items-center bg-[#9580e5] border-b-[3px] border-black overflow-hidden">
+  <div class="relative z-10 w-full max-w-5xl mx-auto px-6 py-16 md:py-24 flex flex-col">
     
     <div class="flex flex-col items-start w-full">
       
       <!-- Primera línea -->
-      <h1 class="text-7xl md:text-[120px] font-titulo font-black uppercase leading-none text-white tracking-[0.05em]">
+      <h1 class="text-5xl sm:text-7xl md:text-[120px] font-titulo font-black uppercase leading-none text-white tracking-[0.03em] break-words">
         Bienvenido/a
       </h1>
       
-      <!-- Segunda línea: "A MI" y "PORTFOLIO" alineados perfectamente arriba -->
-      <div class="flex flex-row items-start gap-4 md:gap-6 mt-2 md:mt-4 w-full">
-        <span class="text-7xl md:text-[120px] font-titulo font-black uppercase leading-none text-white tracking-[0.05em]">
+      <!-- Segunda línea: "A mi" y "Portfolio" adaptados para no romper en mobile -->
+      <div class="flex flex-wrap md:flex-row items-baseline gap-3 sm:gap-4 md:gap-6 mt-3 md:mt-4 w-full">
+        <span class="text-5xl sm:text-7xl md:text-[120px] font-titulo font-black uppercase leading-none text-white tracking-[0.03em]">
           A mi
         </span>
-        <span class="text-[#4a154b] text-[90px] md:text-[170px] font-titulo2 font-black uppercase leading-[0.8] tracking-widest">
+        <span class="text-[#4a154b] text-6xl sm:text-8xl md:text-[170px] font-titulo2 font-black uppercase leading-[0.8] tracking-wide break-all md:break-normal">
           Portfolio
         </span>
       </div>
 
     </div>
 
-    <!-- Píldoras (alineadas a la derecha) -->
-    <div class="w-full flex justify-end items-center gap-4 mt-12 md:mt-6 pr-4 md:pr-12 flex-wrap">
+    <!-- Píldoras (alineadas a la izquierda en celular y a la derecha en desktop) -->
+    <div class="w-full flex justify-start md:justify-end items-center gap-4 mt-10 md:mt-6 flex-wrap">
       
       <!-- SEMÁFORO DE STATUS (Consumiendo la API) -->
-      <div class="bg-white text-black font-extrabold text-sm md:text-base px-6 py-3 border-[3px] border-black uppercase tracking-wider flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-        <span class="relative flex h-3 w-3">
+      <div class="bg-white text-black font-extrabold text-xs sm:text-sm md:text-base px-4 sm:px-6 py-3 border-[3px] border-black uppercase tracking-wider flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <span class="relative flex h-3 w-3 shrink-0">
           {estado.disponible ? (
             <>
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1ea04c] opacity-75"></span>
@@ -54,11 +54,11 @@ try {
              <span class="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
           )}
         </span>
-        {estado.mensaje}
+        <span class="truncate">{estado.mensaje}</span>
       </div>
 
-      <!-- Píldora de tu nombre con el color oscuro de la imagen -->
-      <span class="bg-[#4a154b] text-white font-extrabold text-xl md:text-3xl px-8 py-2 border-[3px] border-black uppercase tracking-wider shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+      <!-- Píldora de tu nombre -->
+      <span class="bg-[#4a154b] text-white font-extrabold text-lg sm:text-xl md:text-3xl px-6 sm:px-8 py-2 border-[3px] border-black uppercase tracking-wider shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
         Oriana Cappelli
       </span>
       

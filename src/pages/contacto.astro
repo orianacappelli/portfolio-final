@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import BotonCopiarEmail from '../components/BotonCopiarEmail.jsx';
 ---
 
 <html lang="es">
@@ -15,13 +16,12 @@ import Footer from '../components/Footer.astro';
     
     <main class="flex-grow w-full max-w-6xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row gap-16 md:gap-24">
       
-      <!-- COLUMNA IZQUIERDA: Título y Formulario API -->
+      <!-- COLUMNA IZQUIERDA: Formulario -->
       <div class="w-full md:w-1/2 flex flex-col">
         <h1 class="text-6xl md:text-[80px] font-black uppercase tracking-tight text-black leading-none mb-8">
           ¡Hablemos!
         </h1>
         
-        <!-- Formulario (Le agregamos el id="contact-form" para que el script lo encuentre) -->
         <form id="contact-form" action="https://formspree.io/f/mojgkvgl" method="POST" class="flex flex-col gap-6">
           
           <div class="flex flex-col">
@@ -47,7 +47,6 @@ import Footer from '../components/Footer.astro';
           </button>
         </form>
 
-        <!-- CARTEL DE ÉXITO OCULTO (Se muestra con JS) -->
         <div id="success-message" class="hidden bg-[#1ea04c] border-[3px] border-black p-8 mt-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <h3 class="text-3xl font-black text-white uppercase tracking-tight mb-2">¡Mensaje enviado!</h3>
           <p class="text-lg font-medium text-white">Gracias por escribirme. Me voy a poner en contacto con vos muy pronto.</p>
@@ -55,17 +54,13 @@ import Footer from '../components/Footer.astro';
 
       </div>
 
-      <!-- COLUMNA DERECHA: Botones de Redes -->
+      <!-- COLUMNA DERECHA: Botones de Redes (Ahora todos iguales) -->
       <div class="w-full md:w-1/2 flex flex-col gap-6 justify-center">
         
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=orianacappelli1@gmail.com" target="_blank" class="group block w-full bg-[#8b5cf6] border-[3px] border-black p-6 md:p-8 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
-          <div class="flex justify-between items-center">
-            <span class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">Mandame un Mail</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
-        </a>
+        <!-- Componente de React con el mismo diseño exacto -->
+        <div class="w-full">
+          <BotonCopiarEmail client:load />
+        </div>
 
         <a href="https://www.linkedin.com/in/oriana-cappelli-16ab7b255/" target="_blank" class="group block w-full bg-white border-[3px] border-black p-6 md:p-8 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
           <div class="flex justify-between items-center">
@@ -91,27 +86,21 @@ import Footer from '../components/Footer.astro';
 
     <Footer />
 
-    <!-- SCRIPT PARA EVITAR QUE SE ABRA LA PÁGINA DE FORMSPREE -->
     <script is:inline>
-      // Envolvemos todo en una función para que Astro la cargue seguro
       const configurarFormulario = () => {
         const form = document.getElementById('contact-form');
         const successMessage = document.getElementById('success-message');
 
         if (form) {
-          // Usamos onsubmit que es más directo que el EventListener
           form.onsubmit = async function(e) {
-            e.preventDefault(); // ESTO es lo que frena que te cambie de página
-            
+            e.preventDefault();
             const data = new FormData(form);
             
             try {
               const response = await fetch(form.action, {
                 method: form.method,
                 body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
               });
               
               if (response.ok) {
@@ -127,10 +116,7 @@ import Footer from '../components/Footer.astro';
         }
       };
 
-      // Lo ejecutamos apenas carga la página
       configurarFormulario();
-      
-      // Por si tenés activadas las transiciones de Astro, esto asegura que vuelva a cargar
       document.addEventListener('astro:page-load', configurarFormulario);
     </script>
   </body>

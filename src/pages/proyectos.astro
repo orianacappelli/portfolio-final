@@ -10,56 +10,54 @@ import Footer from '../components/Footer.astro';
     <meta name="viewport" content="width=device-width" />
     <title>Proyectos - Oriana Cappelli</title>
   </head>
-  <body class="bg-[#f4ebf2] font-sans flex flex-col min-h-screen">
+  <body class="bg-[#f4ebf2] font-sans flex flex-col min-h-screen overflow-x-hidden">
     <Navbar />
     
-    <main class="flex-grow w-full max-w-6xl mx-auto px-6 py-16 md:py-24">
+    <main class="flex-grow w-full max-w-6xl mx-auto px-6 py-12 md:py-24">
       
       <!-- Título de la página -->
-      <h1 class="text-5xl md:text-[56px] font-black uppercase tracking-tight text-black mb-12">
+      <h1 class="text-4xl sm:text-5xl md:text-[56px] font-black uppercase tracking-tight text-black mb-8 md:mb-12">
         PROYECTOS
       </h1>
       
       <!-- Grilla de tarjetas (2 columnas en PC, 1 en celu) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14">
         
         <!-- Tarjeta 1 -->
         <a href="/proyectos/7up" class="block group">
-          <div class="bg-white border-[3px] border-black rounded-none shadow-2xl group-hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full">
+          <div class="bg-white border-[3px] border-black rounded-none shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1.5 transition-transform duration-300 flex flex-col h-full">
             <figure class="w-full aspect-[4/3] md:aspect-[3/2] bg-[#1ea04c] border-b-[3px] border-black overflow-hidden">
               <img src="/proyecto-7up.png" alt="Publicidad 7up" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </figure>
-            <div class="p-6 flex justify-center items-center flex-grow">
-              <h3 class="text-xl md:text-2xl font-black text-black m-0 text-center tracking-tight">Proyecto publicidad animación 7up</h3>
+            <div class="p-5 sm:p-6 flex justify-center items-center flex-grow">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-black text-black m-0 text-center tracking-tight">Proyecto publicidad animación 7up</h3>
             </div>
           </div>
         </a>
 
         <!-- Tarjeta 2 -->
         <a href="/proyectos/diseno-beatrix" class="block group">
-          <div class="bg-white border-[3px] border-black rounded-none shadow-2xl group-hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full">
+          <div class="bg-white border-[3px] border-black rounded-none shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1.5 transition-transform duration-300 flex flex-col h-full">
             <figure class="w-full aspect-[4/3] md:aspect-[3/2] bg-[#1ea04c] border-b-[3px] border-black overflow-hidden">
-              <img src="/portada-beatrix.png" alt="Proyecto Dos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src="/portada-beatrix.png" alt="Concept Art: Beatrix" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </figure>
-            <div class="p-6 flex justify-center items-center flex-grow">
-              <h3 class="text-xl md:text-2xl font-black text-black m-0 text-center tracking-tight">Concept Art: Beatrix</h3>
+            <div class="p-5 sm:p-6 flex justify-center items-center flex-grow">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-black text-black m-0 text-center tracking-tight">Concept Art: Beatrix</h3>
             </div>
           </div>
         </a>
 
         <!-- Tarjeta 3 -->
         <a href="/proyectos/logo-animado" class="block group">
-          <div class="bg-white border-[3px] border-black rounded-none shadow-2xl group-hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full">
+          <div class="bg-white border-[3px] border-black rounded-none shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:-translate-y-1.5 transition-transform duration-300 flex flex-col h-full">
             <figure class="w-full aspect-[4/3] md:aspect-[3/2] bg-[#1ea04c] border-b-[3px] border-black overflow-hidden">
-              <img src="/portada-disney.png" alt="Proyecto Tres" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src="/portada-disney.png" alt="Logo Animado: Disney Channel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </figure>
-            <div class="p-6 flex justify-center items-center flex-grow">
-              <h3 class="text-xl md:text-2xl font-black text-black m-0 text-center tracking-tight">Logo Animado: Disney Channel</h3>
+            <div class="p-5 sm:p-6 flex justify-center items-center flex-grow">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-black text-black m-0 text-center tracking-tight">Logo Animado: Disney Channel</h3>
             </div>
           </div>
         </a>
-
-        
 
       </div>
     </main>

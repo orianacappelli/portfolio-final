@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+// Importamos el tercer componente interactivo de React para cumplir con la UI Library
+import AcordeonInfo from '../components/AcordeonInfo.jsx';
 ---
 
 <html lang="es">
@@ -15,10 +17,10 @@ import Footer from '../components/Footer.astro';
     
     <main class="flex-grow w-full max-w-6xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row gap-16 md:gap-24 items-center md:items-start">
       
-      <!-- COLUMNA IZQUIERDA: Foto y Botón Brutalista -->
+      <!-- COLUMNA IZQUIERDA: Foto y Botón Brutalista (Responsive: ancho completo en celu, fijo de 380px en compu) -->
       <div class="w-full md:w-[380px] shrink-0 flex flex-col items-center">
         
-        <!-- Contenedor de la Foto (Estilo cuadro brutalista con sombra dura) -->
+        <!-- Contenedor de la Foto -->
         <div class="w-full bg-white border-[3px] border-black p-3 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <div class="w-full aspect-[4/5] bg-zinc-200 border-[3px] border-black overflow-hidden">
             <img src="/foto-perfil.jpg" alt="Oriana Cappelli" class="w-full h-full object-cover" />
@@ -37,7 +39,7 @@ import Footer from '../components/Footer.astro';
 
       </div>
 
-      <!-- COLUMNA DERECHA: Bio, Skills y Educación -->
+      <!-- COLUMNA DERECHA: Bio, Skills, Educación y Acordeón Interactivo -->
       <div class="w-full flex flex-col text-black pt-4">
         
         <!-- Título principal de la sección -->
@@ -78,13 +80,22 @@ import Footer from '../components/Footer.astro';
 
         <!-- Sección Educación -->
         <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-4">Educación</h2>
-        <div class="bg-white border-[3px] border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div class="bg-white border-[3px] border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-10">
           <p class="text-xl md:text-2xl font-black text-black uppercase tracking-tight mb-1">
             Tecnología Multimedial
           </p>
           <p class="text-lg font-medium text-gray-800">
             Universidad Maimónides
           </p>
+        </div>
+
+        <!-- Divisor -->
+        <hr class="border-t-[3px] border-black mb-10" />
+
+        <!-- Sección Acordeón Interactivo (Componente de React) -->
+        <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-6">Más sobre mí</h2>
+        <div class="w-full">
+          <AcordeonInfo client:load />
         </div>
 
       </div>
