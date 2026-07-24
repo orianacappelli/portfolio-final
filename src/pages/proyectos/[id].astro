@@ -4,6 +4,7 @@ import '../../styles/global.css';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
+//uso getstaticpaths para generar dinamicamente las rutas estaticas de cada proyecto segun su id
 export function getStaticPaths() {
   const misProyectos = [
     {
@@ -28,7 +29,7 @@ export function getStaticPaths() {
       titulo: 'Concept Art: Beatrix',
       categoria: 'Ilustración / Diseño de Personajes',
       tipo: 'pdf',
-      archivo: '/Cappelli_Oriana_Practica2.pdf', // Corregido sin el /public/ inicial para que cargue perfecto en Astro
+      archivo: '/Cappelli_Oriana_Practica2.pdf', 
       descripcion: `
         <p class="mb-6">
           <strong class="text-black block text-xl mb-1 uppercase">El Desafío</strong>
@@ -59,6 +60,7 @@ export function getStaticPaths() {
     }
   ];
 
+  // mapeo el array para devolver los parametros y las propiedades que va a usar la pagina
   return misProyectos.map((proyecto) => {
     return {
       params: { id: proyecto.id },
@@ -67,6 +69,7 @@ export function getStaticPaths() {
   });
 }
 
+//extraigo el objeto proyecto de las propiedades para poder mostrar su titulo y contenido
 const { proyecto } = Astro.props;
 ---
 
@@ -81,7 +84,7 @@ const { proyecto } = Astro.props;
     
     <main class="flex-grow w-full max-w-6xl mx-auto px-6 py-12 md:py-24">
       
-      <!-- Botón para volver -->
+      <!-- boton para volver al listado general de proyectos -->
       <a href="/proyectos" class="inline-flex items-center gap-2 text-black font-black uppercase tracking-wider mb-8 hover:opacity-70 transition-opacity">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-[3px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -89,13 +92,12 @@ const { proyecto } = Astro.props;
         Volver a Proyectos
       </a>
 
-      <!-- Layout en 2 columnas para pantallas grandes -->
       <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
         
-        <!-- COLUMNA IZQUIERDA: Media (Video, Imagen o PDF) -->
         <div class="w-full lg:w-3/5 flex flex-col gap-4">
           <div class="w-full bg-white border-[3px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-2">
             
+            {/* evaluo el tipo de archivo para renderizar la etiqueta html que corresponda */}
             {proyecto.tipo === 'video' ? (
               <video 
                 src={proyecto.archivo} 
@@ -120,7 +122,7 @@ const { proyecto } = Astro.props;
             
           </div>
 
-          <!-- Botón extra por si el navegador bloquea el visor de PDF -->
+          <!-- boton de respaldo por si el navegador movil bloquea la visualizacion directa del pdf -->
           {proyecto.tipo === 'pdf' && (
             <a 
               href={proyecto.archivo} 
@@ -132,22 +134,21 @@ const { proyecto } = Astro.props;
           )}
         </div>
 
-        <!-- COLUMNA DERECHA: Textos y Descripción -->
+        <!-- derecha textos, categoria y descripcion detallada -->
         <div class="w-full lg:w-2/5 flex flex-col">
           
-          <!-- Tag de categoría Brutalista -->
           <div class="mb-4">
             <span class="bg-[#2c2c2c] text-white text-xs md:text-sm font-bold uppercase px-3 py-1 border-[2px] border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
               {proyecto.categoria}
             </span>
           </div>
           
-          <!-- Título -->
+          <!-- titulo del proyecto -->
           <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-black leading-none mb-6 md:mb-8">
             {proyecto.titulo}
           </h1>
           
-          <!-- Descripción -->
+          <!-- se renderiza la descripcion en html para conservar  -->
           <div class="flex flex-col gap-4 text-base sm:text-lg font-medium text-gray-800 leading-snug">
             <Fragment set:html={proyecto.descripcion} />
           </div>

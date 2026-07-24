@@ -1,12 +1,13 @@
 ---
 // src/components/Hero.astro
 
-// Tu link limpio y directo
+// defino la url de mi gist para consumir el estado de disponibilidad desde una api externa
 const urlAPI = 'https://gist.githubusercontent.com/orianacappelli/5769ca586f73661b780daaef14a3574e/raw/gistfile1.txt';
 
-// Estado por defecto (por si se corta tu internet)
+// armo un estado por defecto por si llega a fallar internet o la api no responde
 let estado = { disponible: true, mensaje: "Disponible para proyectos" }; 
 
+// hago un fetch para traerme los datos de la api en tiempo de compilacion
 try {
   const respuesta = await fetch(urlAPI);
   if (respuesta.ok) {
@@ -17,17 +18,16 @@ try {
 }
 ---
 
+<!-- seccion principal del hero -->
 <section class="relative w-full min-h-[70vh] flex flex-col justify-center items-center bg-[#9580e5] border-b-[3px] border-black overflow-hidden">
   <div class="relative z-10 w-full max-w-5xl mx-auto px-6 py-16 md:py-24 flex flex-col">
     
     <div class="flex flex-col items-start w-full">
       
-      <!-- Primera línea -->
       <h1 class="text-5xl sm:text-7xl md:text-[120px] font-titulo font-black uppercase leading-none text-white tracking-[0.03em] break-words">
         Bienvenido/a
       </h1>
       
-      <!-- Segunda línea: "A mi" y "Portfolio" adaptados para no romper en mobile -->
       <div class="flex flex-wrap md:flex-row items-baseline gap-3 sm:gap-4 md:gap-6 mt-3 md:mt-4 w-full">
         <span class="text-5xl sm:text-7xl md:text-[120px] font-titulo font-black uppercase leading-none text-white tracking-[0.03em]">
           A mi
@@ -39,14 +39,14 @@ try {
 
     </div>
 
-    <!-- Píldoras (alineadas a la izquierda en celular y a la derecha en desktop) -->
     <div class="w-full flex justify-start md:justify-end items-center gap-4 mt-10 md:mt-6 flex-wrap">
       
-      <!-- SEMÁFORO DE STATUS (Consumiendo la API) -->
+      <!-- semaforo de status que cambia de color segun el JSON de la api -->
       <div class="bg-white text-black font-extrabold text-xs sm:text-sm md:text-base px-4 sm:px-6 py-3 border-[3px] border-black uppercase tracking-wider flex items-center gap-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
         <span class="relative flex h-3 w-3 shrink-0">
           {estado.disponible ? (
             <>
+              <!-- efecto de animacion tipo radar si estoy disponible -->
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1ea04c] opacity-75"></span>
               <span class="relative inline-flex rounded-full h-3 w-3 bg-[#1ea04c]"></span>
             </>
@@ -57,7 +57,6 @@ try {
         <span class="truncate">{estado.mensaje}</span>
       </div>
 
-      <!-- Píldora de tu nombre -->
       <span class="bg-[#4a154b] text-white font-extrabold text-lg sm:text-xl md:text-3xl px-6 sm:px-8 py-2 border-[3px] border-black uppercase tracking-wider shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
         Oriana Cappelli
       </span>

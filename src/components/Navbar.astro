@@ -1,17 +1,21 @@
 ---
 // src/components/Navbar.astro
+
+//importo el componente de react para el menu desplegable de celular
 import MenuMovil from './MenuMovil.jsx';
 ---
 
 <header class="sticky top-0 z-50 w-full bg-white border-b-[3px] border-black">
-  <nav class="max-w-6xl mx-auto flex h-16 items-center justify-between px-6 text-black font-extrabold uppercase text-sm tracking-wide">
+  <nav class="w-full flex h-16 items-center justify-between text-black font-extrabold uppercase text-sm tracking-wide">
     
-    <div class="flex items-center">
-      <a href="/" class="hover:opacity-70 transition-opacity text-base md:text-lg">
+    <!--  mi logo -->
+    <div class="flex items-center pl-6 md:pl-12">
+      <a href="/" class="hover:opacity-70 transition-opacity text-base md:text-lg tracking-wider">
         PORTFOLIO.CAPPELLI
       </a>
     </div>
 
+    <!-- links de navegacion para computadora que se ocultan en celulares -->
     <div class="hidden md:flex h-full items-stretch">
       <a href="/sobre-mi" class="flex items-center px-8 border-l-[3px] border-black hover:bg-[#f4ebf2] transition-colors">
         Sobre mí
@@ -24,7 +28,8 @@ import MenuMovil from './MenuMovil.jsx';
       </a>
     </div>
 
-    <div class="flex md:hidden items-center">
+    <!-- contenedor para el menu movil  -->
+    <div class="flex md:hidden items-center pr-6">
       <MenuMovil client:load />
     </div>
 

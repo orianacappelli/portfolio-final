@@ -14,14 +14,16 @@ import BotonCopiarEmail from '../components/BotonCopiarEmail.jsx';
   <body class="bg-[#f4ebf2] font-sans flex flex-col min-h-screen">
     <Navbar />
     
+    <!-- seccion principal  -->
     <main class="flex-grow w-full max-w-6xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row gap-16 md:gap-24">
       
-      <!-- COLUMNA IZQUIERDA: Formulario -->
+      <!-- izq Formulario -->
       <div class="w-full md:w-1/2 flex flex-col">
         <h1 class="text-6xl md:text-[80px] font-black uppercase tracking-tight text-black leading-none mb-8">
           ¡Hablemos!
         </h1>
         
+        <!-- formulario configurado para enviar datos mediante formspree de forma dinamica -->
         <form id="contact-form" action="https://formspree.io/f/mojgkvgl" method="POST" class="flex flex-col gap-6">
           
           <div class="flex flex-col">
@@ -47,6 +49,7 @@ import BotonCopiarEmail from '../components/BotonCopiarEmail.jsx';
           </button>
         </form>
 
+        <!-- cartel de exito que se muestra oculto hasta que el formulario se envia correctamente -->
         <div id="success-message" class="hidden bg-[#1ea04c] border-[3px] border-black p-8 mt-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <h3 class="text-3xl font-black text-white uppercase tracking-tight mb-2">¡Mensaje enviado!</h3>
           <p class="text-lg font-medium text-white">Gracias por escribirme. Me voy a poner en contacto con vos muy pronto.</p>
@@ -54,14 +57,15 @@ import BotonCopiarEmail from '../components/BotonCopiarEmail.jsx';
 
       </div>
 
-      <!-- COLUMNA DERECHA: Botones de Redes (Ahora todos iguales) -->
+      <!-- der botones de redes -->
       <div class="w-full md:w-1/2 flex flex-col gap-6 justify-center">
         
-        <!-- Componente de React con el mismo diseño exacto -->
+        <!-- componente de react para copiar el mail al portapapeles -->
         <div class="w-full">
           <BotonCopiarEmail client:load />
         </div>
 
+        <!-- boton de enlace a mi linkedin -->
         <a href="https://www.linkedin.com/in/oriana-cappelli-16ab7b255/" target="_blank" class="group block w-full bg-white border-[3px] border-black p-6 md:p-8 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
           <div class="flex justify-between items-center">
             <span class="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">LinkedIn</span>
@@ -71,6 +75,7 @@ import BotonCopiarEmail from '../components/BotonCopiarEmail.jsx';
           </div>
         </a>
 
+        <!-- boton de enlace a instagram -->
         <a href="https://www.instagram.com/" target="_blank" class="group block w-full bg-white border-[3px] border-black p-6 md:p-8 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
           <div class="flex justify-between items-center">
             <span class="text-3xl md:text-4xl font-black text-black uppercase tracking-tight">Instagram</span>
@@ -86,23 +91,31 @@ import BotonCopiarEmail from '../components/BotonCopiarEmail.jsx';
 
     <Footer />
 
+    <!-- script de javascript para manejar el envio asincronico del formulario sin recargar la pagina -->
     <script is:inline>
+      // creo una funcion para englobar toda la logica del formulario de contacto
       const configurarFormulario = () => {
+        // busco en el html el formulario y el cartel de exito por sus ids
         const form = document.getElementById('contact-form');
         const successMessage = document.getElementById('success-message');
 
+        // me aseguro de que el formulario exista en la pagina antes de agregarle el evento
         if (form) {
+          // intercepto el evento submit para evitar que la pagina se recargue sola al enviar
           form.onsubmit = async function(e) {
             e.preventDefault();
+            // armo un objeto con todos los datos que escribio el usuario en los campos
             const data = new FormData(form);
             
             try {
+              // hago un fetch para mandar los datos por atras a formspree sin cambiar de pantalla
               const response = await fetch(form.action, {
                 method: form.method,
                 body: data,
                 headers: { 'Accept': 'application/json' }
               });
               
+              // si el servidor me devuelve una respuesta ok, oculto el form y muestro el cartel de exito
               if (response.ok) {
                 form.style.display = 'none';
                 if (successMessage) successMessage.classList.remove('hidden');
@@ -110,12 +123,14 @@ import BotonCopiarEmail from '../components/BotonCopiarEmail.jsx';
                 alert('Hubo un error al enviar el mensaje. Por favor, intentá de nuevo.');
               }
             } catch (error) {
+              // si hay algun problema de conexion salta esta alerta de error
               alert('Hubo un error de conexión. Por favor, intentá de nuevo.');
             }
           };
         }
       };
 
+      // ejecuto la funcion de entrada y tambien la engancho al evento de astro por si navego entre secciones
       configurarFormulario();
       document.addEventListener('astro:page-load', configurarFormulario);
     </script>
