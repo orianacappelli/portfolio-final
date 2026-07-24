@@ -18,7 +18,7 @@
   <div class="flex overflow-x-auto gap-6 md:gap-8 px-2 py-6 md:p-20 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
     
     <!-- TARJETA 1 -->
-    <div class="shrink-0 w-[85vw] sm:w-[400px] md:w-[600px] snap-center">
+    <div class="shrink-0 w-[85vw] sm:w-[400px] md:w-[600px] snap-center tarjeta-gsap">
       <a href="/proyectos/7up" class="block w-full h-full group">
         <div class="w-full h-full bg-white border-[3px] border-black rounded-none shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:scale-[1.01] transition-transform duration-300 flex flex-col">
           <figure class="w-full h-56 sm:h-72 md:h-[350px] bg-[#1ea04c] border-b-[3px] border-black overflow-hidden">
@@ -32,7 +32,7 @@
     </div>
 
     <!-- TARJETA 2 -->
-    <div class="shrink-0 w-[85vw] sm:w-[400px] md:w-[600px] snap-center">
+    <div class="shrink-0 w-[85vw] sm:w-[400px] md:w-[600px] snap-center tarjeta-gsap">
       <a href="/proyectos/diseno-beatrix" class="block w-full h-full group">
         <div class="w-full h-full bg-white border-[3px] border-black rounded-none shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:scale-[1.01] transition-transform duration-300 flex flex-col">
           <figure class="w-full h-56 sm:h-72 md:h-[350px] bg-[#1ea04c] border-b-[3px] border-black overflow-hidden">
@@ -46,7 +46,7 @@
     </div>
 
     <!-- TARJETA 3 -->
-    <div class="shrink-0 w-[85vw] sm:w-[400px] md:w-[600px] snap-center">
+    <div class="shrink-0 w-[85vw] sm:w-[400px] md:w-[600px] snap-center tarjeta-gsap">
       <a href="/proyectos/logo-animado" class="block w-full h-full group">
         <div class="w-full h-full bg-white border-[3px] border-black rounded-none shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] group-hover:scale-[1.01] transition-transform duration-300 flex flex-col">
           <figure class="w-full h-56 sm:h-72 md:h-[350px] bg-[#1ea04c] border-b-[3px] border-black overflow-hidden">
@@ -61,3 +61,23 @@
 
   </div>
 </section>
+
+<!-- cdn de gsap con una animacion mucho mas vistosa de entrada -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script is:inline>
+  const animarProyectosDramatico = () => {
+    if (typeof gsap !== 'undefined') {
+      gsap.from(".tarjeta-gsap", {
+        scale: 0.6,          // arrancan achicadas al 60%
+        opacity: 0,          // desde totalmente invisibles
+        y: 80,               // suben desde mas abajo
+        duration: 1,         // un segundo de animacion
+        stagger: 0.3,        // una se despliega despues de la otra
+        ease: "back.out(1.7)" // efecto elastico de rebote al finalizar
+      });
+    }
+  };
+
+  window.addEventListener('DOMContentLoaded', animarProyectosDramatico);
+  document.addEventListener('astro:page-load', animarProyectosDramatico);
+</script>
